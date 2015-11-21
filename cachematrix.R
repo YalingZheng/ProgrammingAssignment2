@@ -3,13 +3,26 @@
 
 ## Write a short comment describing this function
 
-makeCacheMatrix <- function(x = matrix()) {
-
-}
-
-
+matrixcacheenv <- new.env()
+ 
 ## Write a short comment describing this function
-
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
-}
+ 
+makeCacheMatrix <- function(x = matrix()) {
+         m <- solve(x)
+         strx <- toString(x)
+         matrixcacheenv[[strx]] <- m
+         return(m)
+ }
+ 
+ 
+ ## Write a short comment describing this function
+ 
+ cacheSolve <- function(x, ...) {
+         ## Return a matrix that is the inverse of 'x'
+         if (exists(toString(x), matrixcacheenv)){
+            message("Getting Cached Data")
+            m <- get(toString(x), matrixcacheenv)
+            return(m)
+         }
+         return(makeCacheMatrix(x))
+ }
