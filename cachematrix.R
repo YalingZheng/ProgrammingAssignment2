@@ -26,3 +26,9 @@ makeCacheMatrix <- function(x = matrix()) {
          }
          return(makeCacheMatrix(x))
  }
+ 
+ B = matrix(c(1,2,3,4), nrow=2, ncol=2)
+ 
+ cacheSolve(B)
+ 
+ cacheSolve(B)
